@@ -1,0 +1,6 @@
+Revision history for Lingua-PTD
+
+1.00    Sat Oct 27 21:39:41 WEST 2012
+        - Moved Lingua::NATools::PTD to Lingua::PTD for easier
+          standalone use.
+

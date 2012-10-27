@@ -1,0 +1,18 @@
+Changes
+lib/Lingua/PTD.pm
+Makefile.PL
+MANIFEST			This list of files
+README
+t/00-load.t
+t/pod-coverage.t
+t/pod.t
+lib/Lingua/PTD/BzDmp.pm
+lib/Lingua/PTD/Dumper.pm
+lib/Lingua/PTD/SQLite.pm
+lib/Lingua/PTD/XzDmp.pm
+t/02_ptd.t
+t/02_casedptd.dmp
+t/02_ptd.dmp
+scripts/nat-ptd
+META.yml                                 Module YAML meta-data (added by MakeMaker)
+META.json                                Module JSON meta-data (added by MakeMaker)
