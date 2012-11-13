@@ -7,7 +7,7 @@ use warnings;
 use strict;
 
 use POSIX qw/setlocale/;
-setlocale(&POSIX::LC_CTYPE, "pt_PT");
+setlocale(&POSIX::LC_CTYPE, "en_US");
 use locale;
 
 use Time::HiRes;
@@ -16,7 +16,7 @@ use Lingua::PTD::BzDmp;
 use Lingua::PTD::XzDmp;
 use Lingua::PTD::SQLite;
 
-our $VERSION = '1.00';
+our $VERSION = '1.01';
 
 =encoding UTF-8
 

@@ -22,6 +22,7 @@ WriteMakefile(
                   'DBD::SQLite'          => '1.30',
                   'Time::HiRes'          => '1.2',
                   'IO::Uncompress::Bunzip2' => '2.027',
+                  'parent'               => '0',
                   'IO::Compress::Bzip2'  => '2.027',
                   'IO::Uncompress::UnXz' => '2.049',
                   'DBI'                  => '0',

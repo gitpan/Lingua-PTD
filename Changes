@@ -1,5 +1,9 @@
 Revision history for Lingua-PTD
 
+1.01    Tue Nov 13 15:51:50 WET 2012
+        - Added 'parent' to prereq modules as some installations
+          do not include it.
+
 1.00    Sat Oct 27 21:39:41 WEST 2012
         - Moved Lingua::NATools::PTD to Lingua::PTD for easier
           standalone use.

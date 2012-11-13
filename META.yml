@@ -31,5 +31,6 @@ requires:
   Pod::Usage: 0
   Term::ReadLine: 0
   Time::HiRes: 1.2
+  parent: 0
   perl: 5.006
-version: 1.00
+version: 1.01
