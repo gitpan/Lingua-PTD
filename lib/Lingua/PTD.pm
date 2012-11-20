@@ -1,13 +1,16 @@
 package Lingua::PTD;
 
+use 5.010;
+
 use parent 'Exporter';
 our @EXPORT = 'toentry';
 our @EXPORT_OK = qw/bws ucts/;
 use warnings;
 use strict;
 
+use utf8;
 use POSIX qw/setlocale/;
-setlocale(&POSIX::LC_CTYPE, "en_US");
+setlocale(&POSIX::LC_ALL, "en_US");
 use locale;
 
 use Time::HiRes;
@@ -16,7 +19,7 @@ use Lingua::PTD::BzDmp;
 use Lingua::PTD::XzDmp;
 use Lingua::PTD::SQLite;
 
-our $VERSION = '1.01';
+our $VERSION = '1.02';
 
 =encoding UTF-8
 

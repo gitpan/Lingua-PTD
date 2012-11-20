@@ -1,5 +1,9 @@
 Revision history for Lingua-PTD
 
+1.02    Tue Nov 20 15:05:58 WET 2012
+        - Trying to find a bug pointed by some cpan testers.
+        - Fixed defined-or usage (requiring 5.10)
+
 1.01    Tue Nov 13 15:51:50 WET 2012
         - Added 'parent' to prereq modules as some installations
           do not include it.
