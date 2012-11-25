@@ -103,6 +103,7 @@ isa_ok $ptd1,"Lingua::PTD"; # still a PTD
 
 is $ptd1->prob("casa" => "house") => 0.5, "house + HOUSE";
 is $ptd1->prob("casa" => "home")  => 0.5, "home + hoMe";
+
 is $ptd1->count("coração") => 150, "coração + CORAÇÃO";
 ok ($ptd1->prob("coração" => "heart") > 0.8332);
 ok ($ptd1->prob("coração" => "heart") < 0.8334);

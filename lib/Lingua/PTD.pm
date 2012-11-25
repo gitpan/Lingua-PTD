@@ -9,8 +9,8 @@ use warnings;
 use strict;
 
 use utf8;
-use POSIX qw/setlocale/;
-setlocale(&POSIX::LC_ALL, "en_US");
+#use POSIX qw/setlocale/;
+#setlocale(&POSIX::LC_ALL, "en_US");
 use locale;
 
 use Time::HiRes;
@@ -19,7 +19,7 @@ use Lingua::PTD::BzDmp;
 use Lingua::PTD::XzDmp;
 use Lingua::PTD::SQLite;
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 
 =encoding UTF-8
 

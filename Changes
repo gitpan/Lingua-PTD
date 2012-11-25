@@ -1,5 +1,9 @@
 Revision history for Lingua-PTD
 
+1.03    Sun Nov 25 14:41:44 WET 2012
+        - Still finding a bug with unicode strings and lowercase.
+        - Force higher versions of Compress and Uncompress XZ.
+
 1.02    Tue Nov 20 15:05:58 WET 2012
         - Trying to find a bug pointed by some cpan testers.
         - Fixed defined-or usage (requiring 5.10)

@@ -24,13 +24,13 @@ requires:
   File::Copy: 0
   File::Spec: 0
   IO::Compress::Bzip2: 2.027
-  IO::Compress::Xz: 2.049
+  IO::Compress::Xz: 2.058
   IO::Uncompress::Bunzip2: 2.027
-  IO::Uncompress::UnXz: 2.049
+  IO::Uncompress::UnXz: 2.058
   List::MoreUtils: 0
   Pod::Usage: 0
   Term::ReadLine: 0
   Time::HiRes: 1.2
   parent: 0
   perl: 5.006
-version: 1.02
+version: 1.03
