@@ -106,6 +106,8 @@ is $ptd1->prob("casa" => "home")  => 0.5, "home + hoMe";
 
 diag("-> ", ord('ç'));
 diag("-> ", ord(lc 'Ç'));
+diag("-> ", ord('ã'));
+diag("-> ", ord(lc 'Ã'));
 
 is $ptd1->count("coração") => 150, "coração + CORAÇÃO";
 ok ($ptd1->prob("coração" => "heart") > 0.8332);
