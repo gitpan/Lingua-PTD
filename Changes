@@ -1,5 +1,6 @@
 Revision history for Lingua-PTD
 
+1.04_3  Wed Dec  5 11:35:59 WET 2012
 1.04_2  Mon Dec  3 13:40:55 WET 2012
 1.04_1  Wed Nov 28 15:13:15 WET 2012
         - Added debug diag messages for unicode strings lowercasing.

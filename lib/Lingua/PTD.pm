@@ -19,7 +19,7 @@ use Lingua::PTD::BzDmp;
 use Lingua::PTD::XzDmp;
 use Lingua::PTD::SQLite;
 
-our $VERSION = '1.04_02';
+our $VERSION = '1.04_03';
 
 =encoding UTF-8
 
@@ -705,6 +705,10 @@ sensitive alignment.
 
 sub lowercase {
     my ($self, %ops) = @_;
+
+    print STDERR "\n\n";
+    print STDERR "--> ", join(" ", ord("ç"), ord(lc "Ç"), ord("ã"), ord(lc "Ã"));
+    print STDERR "\n\n";
 
     $ops{verbose} //= $self->verbose;
 
