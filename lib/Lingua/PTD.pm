@@ -9,9 +9,12 @@ use warnings;
 use strict;
 
 use utf8;
-#use POSIX qw/setlocale/;
-#setlocale(&POSIX::LC_ALL, "en_US");
+use POSIX qw/setlocale/;
 use locale;
+
+BEGIN {
+    setlocale(&POSIX::LC_CTYPE, "pt_PT");
+}
 
 use Time::HiRes;
 use Lingua::PTD::Dumper;
@@ -19,7 +22,7 @@ use Lingua::PTD::BzDmp;
 use Lingua::PTD::XzDmp;
 use Lingua::PTD::SQLite;
 
-our $VERSION = '1.04_03';
+our $VERSION = '1.04_04';
 
 =encoding UTF-8
 
@@ -705,10 +708,6 @@ sensitive alignment.
 
 sub lowercase {
     my ($self, %ops) = @_;
-
-    print STDERR "\n\n";
-    print STDERR "--> ", join(" ", ord("ç"), ord(lc "Ç"), ord("ã"), ord(lc "Ã"));
-    print STDERR "\n\n";
 
     $ops{verbose} //= $self->verbose;
 
