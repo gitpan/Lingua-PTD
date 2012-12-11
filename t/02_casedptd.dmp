@@ -1,3 +1,4 @@
+use utf8;
 $a = {
       'casa' => {
                  count => 100,
@@ -8,13 +9,13 @@ $a = {
                            HOUSE => 0.25,
                           },
                 },
-      'coração' => {
+      'coraÃ§Ã£o' => {
                     count => 100,
                     trans => {
                               Heart => .75,
                              }
                    },
-      'CORAÇÃO' => {
+      'CORAÃ‡ÃƒO' => {
                     count => 50,
                     trans => {
                               heart => 1

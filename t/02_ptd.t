@@ -1,8 +1,8 @@
 # -*- cperl -*-
-use utf8;
-use Test::More tests => 23 + 5*32;
+use Test::More tests => 22 + 5*32;
 
-use_ok "Lingua::PTD";
+use utf8;
+use Lingua::PTD;
 
 my $ptd = Lingua::PTD->new("t/02_ptd.dmp");
 
@@ -104,11 +104,7 @@ isa_ok $ptd1,"Lingua::PTD"; # still a PTD
 is $ptd1->prob("casa" => "house") => 0.5, "house + HOUSE";
 is $ptd1->prob("casa" => "home")  => 0.5, "home + hoMe";
 
-$a = "çÇãÃ";
-SKIP: {
-    skip "not a good locale", 1 unless $a =~ m!^\w{4}$!;
-    is $ptd1->count("coração") => 150, "coração + CORAÇÃO";
-}
+is $ptd1->count("coração") => 150, "coração + CORAÇÃO";
 
 ok ($ptd1->prob("coração" => "heart") > 0.8332);
 ok ($ptd1->prob("coração" => "heart") < 0.8334);
@@ -132,16 +128,16 @@ sub test_contents {
 
 
     my $stats = $ptd->stats;
-    is($stats->{size},  $ptd->size);
-    is($stats->{occTotal}, $stats->{size});
-    is($stats->{count}, $ptd->count);
-    is($stats->{avgOcc}, 125);
-    is($stats->{occMin}, 100);
-    is($stats->{occMax}, 150);
-    is($stats->{occMinWord}, 'casa');
-    is($stats->{occMaxWord}, 'gato');
-    is($stats->{probMax}, 1);
-    is($stats->{probMin}, 0.25);
+    is($stats->{size},  $ptd->size, "Size ok");
+    is($stats->{occTotal}, $stats->{size}, "Occ total ok");
+    is($stats->{count}, $ptd->count, "count ok");
+    is($stats->{avgOcc}, 125, "avgOcc ok");
+    is($stats->{occMin}, 100, "occMin ok");
+    is($stats->{occMax}, 150, "occMax ok");
+    is($stats->{occMinWord}, 'casa', "minword ok");
+    is($stats->{occMaxWord}, 'gato', "maxword ok");
+    is($stats->{probMax}, 1, "probmax ok");
+    is($stats->{probMin}, 0.25, "probmin ok");
     is($stats->{avgBestTrans}, 1.25/2); # cross fingers
 
     ## Recalculate probabilities

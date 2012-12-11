@@ -9,12 +9,9 @@ use warnings;
 use strict;
 
 use utf8;
-use POSIX qw/setlocale/;
 use locale;
 
-BEGIN {
-    setlocale(&POSIX::LC_CTYPE, "pt_PT");
-}
+
 
 use Time::HiRes;
 use Lingua::PTD::Dumper;
@@ -22,7 +19,7 @@ use Lingua::PTD::BzDmp;
 use Lingua::PTD::XzDmp;
 use Lingua::PTD::SQLite;
 
-our $VERSION = '1.04_04';
+our $VERSION = '1.04';
 
 =encoding UTF-8
 
@@ -134,7 +131,7 @@ sub dump {
     print "\$a = {\n";
     $self->downtr(
                   sub {
-                      my ($w,$c,%t) = @_;			
+                      my ($w,$c,%t) = @_;
                       printf "  '%s' => {\n", _protect_quotes($w);
                       printf "      count => %d,\n", $c;
                       printf "      trans => {\n";
@@ -725,6 +722,10 @@ sub lowercase {
 
                       if ($w =~ /[[:upper:]]/) {
                           my $lw = lc $w;
+
+                          open X, ">>:utf8", "log";
+                          print X "WAS $w, IS $lw\n";
+                          close X;
 
                           my %ot = $self->transHash($lw);
                           if (%ot) {
