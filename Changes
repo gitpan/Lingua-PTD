@@ -1,5 +1,8 @@
 Revision history for Lingua-PTD
 
+1.05    Thu Dec 13 12:04:54 WET 2012
+        - Use case folding instead of lowercasing.
+
 1.04    Tue Dec 11 16:03:24 WET 2012
         - Fixed issues with unicode/lowercase.
 

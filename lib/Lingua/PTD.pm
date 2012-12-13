@@ -9,9 +9,8 @@ use warnings;
 use strict;
 
 use utf8;
-use locale;
 
-
+use Unicode::CaseFold;
 
 use Time::HiRes;
 use Lingua::PTD::Dumper;
@@ -19,7 +18,7 @@ use Lingua::PTD::BzDmp;
 use Lingua::PTD::XzDmp;
 use Lingua::PTD::SQLite;
 
-our $VERSION = '1.04';
+our $VERSION = '1.05';
 
 =encoding UTF-8
 
@@ -701,6 +700,10 @@ sensitive alignment.
 
    $ptd->lowercase(verbose => 1);
 
+NOTE: we are using case folding, that might no be always what you
+expect, but proven to be more robust than relying on the system
+lowercase implementation.
+
 =cut
 
 sub lowercase {
@@ -715,13 +718,13 @@ sub lowercase {
                       for my $k (keys %t) {
                           next unless $k =~ /[[:upper:]]/;
 
-                          my $lk = lc $k;
+                          my $lk = fc $k;
                           $t{$lk} = exists($t{$lk}) ? $t{$lk} + $t{$k} : $t{$k};
                           delete $t{$k};
                       }
 
                       if ($w =~ /[[:upper:]]/) {
-                          my $lw = lc $w;
+                          my $lw = fc $w;
 
                           open X, ">>:utf8", "log";
                           print X "WAS $w, IS $lw\n";

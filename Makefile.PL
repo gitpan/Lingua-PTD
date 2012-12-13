@@ -31,6 +31,7 @@ WriteMakefile(
                   'File::Copy'           => '0',
                   'List::MoreUtils'      => '0',
                   'Term::ReadLine'       => '0',
+                  'Unicode::CaseFold'    => '0',
                   'IO::Compress::Xz'     => '2.058',
                  },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
