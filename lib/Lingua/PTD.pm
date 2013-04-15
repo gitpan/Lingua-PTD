@@ -18,7 +18,7 @@ use Lingua::PTD::BzDmp;
 use Lingua::PTD::XzDmp;
 use Lingua::PTD::SQLite;
 
-our $VERSION = '1.05';
+our $VERSION = '1.06';
 
 =encoding UTF-8
 
@@ -336,7 +336,7 @@ domain subtraction takes place.
 
 sub subtractDomain {
     my ($self, $other, @more) = @_;
-	
+
     my @domain;
     if (ref($other) =~ /Lingua::PTD/ and $other->isa("Lingua::PTD")) {
         @domain = $other->words;
@@ -352,7 +352,7 @@ sub subtractDomain {
     }
     my %domain;
     @domain{@domain} = @domain;
-	
+
     $self -> downtr (
                      sub {
                          my ($w,$c,%t) = @_;
@@ -383,7 +383,7 @@ takes place.
 
 sub restrictDomain {
     my ($self, $other, @more) = @_;
-	
+
     my @domain;
     if (ref($other) =~ /Lingua::PTD/ and $other->isa("Lingua::PTD")) {
         @domain = $other->words;
@@ -399,7 +399,7 @@ sub restrictDomain {
     }
     my %domain;
     @domain{@domain} = @domain;
-	
+
     $self -> downtr (
                      sub {
                          my ($w,$c,%t) = @_;

@@ -4,7 +4,7 @@
       "Alberto Simões <ambs@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "ExtUtils::MakeMaker version 6.6302, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "ExtUtils::MakeMaker version 6.64, CPAN::Meta::Converter version 2.130880",
    "license" : [
       "unknown"
    ],
@@ -43,7 +43,7 @@
             "IO::Uncompress::UnXz" : "2.058",
             "List::MoreUtils" : "0",
             "Pod::Usage" : "0",
-            "Term::ReadLine" : "0",
+            "Term::ReadLine::Gnu" : "1.20",
             "Time::HiRes" : "1.2",
             "Unicode::CaseFold" : "0",
             "parent" : "0",
@@ -52,5 +52,5 @@
       }
    },
    "release_status" : "stable",
-   "version" : "1.05"
+   "version" : "1.06"
 }

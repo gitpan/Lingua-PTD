@@ -1,5 +1,8 @@
 Revision history for Lingua-PTD
 
+1.06    Mon Apr 15 22:38:10 WEST 2013
+        - Some Term::ReadLine::Gnu need an argument.. weird
+
 1.05    Thu Dec 13 12:04:54 WET 2012
         - Use case folding instead of lowercasing.
 

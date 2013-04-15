@@ -334,7 +334,7 @@ sub query {
     my $ptd = Lingua::PTD->new($filename);
 
     _DEBUG_ "initializing readline";
-    my $term = Term::ReadLine->new;
+    my $term = Term::ReadLine->new("nat-ptd");
     my $prompt = "[$filename] ";
     my $attrs = $term->Attribs;
     $attrs->{completion_entry_function} = $attrs->{list_completion_function};

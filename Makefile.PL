@@ -30,7 +30,7 @@ WriteMakefile(
                   'File::Spec'           => '0',
                   'File::Copy'           => '0',
                   'List::MoreUtils'      => '0',
-                  'Term::ReadLine'       => '0',
+                  'Term::ReadLine::Gnu'  => '1.20',
                   'Unicode::CaseFold'    => '0',
                   'IO::Compress::Xz'     => '2.058',
                  },
