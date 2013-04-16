@@ -18,7 +18,7 @@ use Lingua::PTD::BzDmp;
 use Lingua::PTD::XzDmp;
 use Lingua::PTD::SQLite;
 
-our $VERSION = '1.06';
+our $VERSION = '1.07';
 
 =encoding UTF-8
 

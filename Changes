@@ -1,5 +1,8 @@
 Revision history for Lingua-PTD
 
+1.07    Tue Apr 16 17:57:46 WEST 2013
+        - Support utf8 on nat-ptd query.
+
 1.06    Mon Apr 15 22:38:10 WEST 2013
         - Some Term::ReadLine::Gnu need an argument.. weird
 

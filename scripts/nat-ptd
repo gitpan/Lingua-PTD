@@ -9,6 +9,7 @@ use File::Spec::Functions 'catfile';
 use File::Copy 'cp';
 use List::MoreUtils 'uniq';
 use Term::ReadLine;
+use Encode 'decode';
 
 =head1 NAME
 
@@ -340,7 +341,12 @@ sub query {
     $attrs->{completion_entry_function} = $attrs->{list_completion_function};
     $attrs->{completion_word} = [grep { /^[[:alpha:]]+(-[[:alpha:]]+)*$/ } $ptd->words];
 
+    binmode STDOUT, ":utf8";
+
     while (defined($_ = $term->readline($prompt))) {
+
+        $_ = decode("utf-8", $_);
+
         $term->addhistory($_) if /\S/;
         $_ = _trim($_);
         if ( $_ =~ /\S/) {
