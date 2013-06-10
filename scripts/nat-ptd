@@ -47,6 +47,7 @@ our %command =
    toDmp     => [\&toDmp     => 'Converts a PTD to Dumper format.'],
    toDmpBz   => [\&toDmpBz   => 'Converts a PTD to Bzipped Dumper format.'],
    toSQLite  => [\&toSQLite  => 'Converts a PTD to SQLite format.'],
+   toTSV       => [\&toTSV     => 'Exports a PTD in a TSV (OmegaT glossary friendly) format.'],
    'grep'    => [\&grep      => 'Lists entries matching a specific pattern.'],
    ucts      => [\&ucts      => 'Create unambiguous-concept translation sets.'],
    bws       => [\&bws       => 'Create bi-words sets.'],
@@ -214,6 +215,44 @@ sub toDmpBz {
 
     _DEBUG_ "writing file [$optd].";
     $ptd->saveAs("bz2", $optd);
+}
+
+=head2 toTSV
+
+This option can be used to export a PTD to a plain text file using a Tab
+Separated Format. The first column represent each term, the second column
+the possible translation, and the third column the probability of this
+possible translation. This file can be directly used as a glossary in
+OmegaT.
+
+Usage:
+
+  ptd-nat toTSV [-m=<p>] <ptd-filename> <dst-filename>
+
+The following options can be used:
+
+=over 4
+
+=item C<-m=p>
+
+Minimum probabilty for translation to be exported. C<p> must be a probability
+in the interval [0,1] (default: 0.5).
+
+=back
+
+=cut
+
+sub toTSV {
+    my ($my_opts, $ptd, $optd) = @_;
+    $optd ||= $ptd;
+    $optd = _get_output_filename("tsv", $optd);
+    my $min = $my_opts->{m} //= 0.5;
+
+    _DEBUG_ "loading PTD [$ptd].";
+    $ptd = Lingua::PTD->new($ptd);
+
+    _DEBUG_ "writing file [$optd].";
+    $ptd->saveAs("tsv", $optd, $min);
 }
 
 =head2 stats

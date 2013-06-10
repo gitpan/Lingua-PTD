@@ -4,7 +4,7 @@
       "Alberto Simões <ambs@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "ExtUtils::MakeMaker version 6.64, CPAN::Meta::Converter version 2.130880",
+   "generated_by" : "ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.131560",
    "license" : [
       "unknown"
    ],
@@ -35,6 +35,7 @@
          "requires" : {
             "DBD::SQLite" : "1.30",
             "DBI" : "0",
+            "Encode" : "0",
             "File::Copy" : "0",
             "File::Spec" : "0",
             "IO::Compress::Bzip2" : "2.027",
@@ -52,5 +53,5 @@
       }
    },
    "release_status" : "stable",
-   "version" : "1.07"
+   "version" : "1.08"
 }

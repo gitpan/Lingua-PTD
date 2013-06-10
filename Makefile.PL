@@ -27,6 +27,7 @@ WriteMakefile(
                   'IO::Uncompress::UnXz' => '2.058',
                   'DBI'                  => '0',
                   'Pod::Usage'           => '0',
+                  'Encode'               => '0',
                   'File::Spec'           => '0',
                   'File::Copy'           => '0',
                   'List::MoreUtils'      => '0',
