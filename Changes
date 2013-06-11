@@ -1,5 +1,8 @@
 Revision history for Lingua-PTD
 
+1.09    Tue Jun 11 11:48:54 WEST 2013
+        - Fix Manifest
+
 1.08    Mon Jun 10 17:57:12 WEST 2013
         - Bug fix on STDOUT closing in the bws and ucts functions
         - Add PTD export to (OmegaT friendly) TSV format.

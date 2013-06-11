@@ -19,7 +19,7 @@ use Lingua::PTD::XzDmp;
 use Lingua::PTD::SQLite;
 use Lingua::PTD::TSV;
 
-our $VERSION = '1.08';
+our $VERSION = '1.09';
 
 =encoding UTF-8
 

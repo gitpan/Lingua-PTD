@@ -35,4 +35,4 @@ requires:
   Unicode::CaseFold: 0
   parent: 0
   perl: 5.006
-version: 1.08
+version: 1.09
