@@ -1,5 +1,8 @@
 Revision history for Lingua-PTD
 
+1.10    Fri Jun 14 11:42:00 WEST 2013
+        - Add PTD export to StarDict.
+
 1.09    Tue Jun 11 11:48:54 WEST 2013
         - Fix Manifest
 

@@ -10,6 +10,7 @@ use File::Copy 'cp';
 use List::MoreUtils 'uniq';
 use Term::ReadLine;
 use Encode 'decode';
+use Module::Load::Conditional qw/check_install/;
 
 =head1 NAME
 
@@ -48,6 +49,7 @@ our %command =
    toDmpBz   => [\&toDmpBz   => 'Converts a PTD to Bzipped Dumper format.'],
    toSQLite  => [\&toSQLite  => 'Converts a PTD to SQLite format.'],
    toTSV       => [\&toTSV     => 'Exports a PTD in a TSV (OmegaT glossary friendly) format.'],
+   toStarDict  => [\&toStarDict     => 'Exports a PTD to StarDict format.'],
    'grep'    => [\&grep      => 'Lists entries matching a specific pattern.'],
    ucts      => [\&ucts      => 'Create unambiguous-concept translation sets.'],
    bws       => [\&bws       => 'Create bi-words sets.'],
@@ -246,13 +248,54 @@ sub toTSV {
     my ($my_opts, $ptd, $optd) = @_;
     $optd ||= $ptd;
     $optd = _get_output_filename("tsv", $optd);
-    my $min = $my_opts->{m} //= 0.5;
 
     _DEBUG_ "loading PTD [$ptd].";
     $ptd = Lingua::PTD->new($ptd);
 
     _DEBUG_ "writing file [$optd].";
-    $ptd->saveAs("tsv", $optd, $min);
+    $ptd->saveAs("tsv", $optd, $my_opts);
+}
+
+=head2 toStarDict
+
+FIXME
+
+Usage:
+
+  ptd-nat toStarDict [-m=<p>] [-d=<directory>] <ptd-filename> <dst-dict-name>
+
+The following options can be used:
+
+=over 4
+
+=item C<-m=p>
+
+Minimum probabilty for translation to be exported. C<p> must be a probability
+in the interval [0,1] (default: 0.4).
+
+=item C<-d=directory>
+
+Destination directory for the created dictinary (default: .).
+
+=back
+
+=cut
+
+sub toStarDict {
+    my ($my_opts, $ptd, $optd) = @_;
+    $optd ||= $ptd;
+    $optd = _get_output_filename('', $optd);
+
+    unless ( check_install( module=>'Lingua::StarDict::Gen' ) ) {
+      print "Lingua::StarDict::Gen module is required for this command.\n";
+      return;
+    }
+
+    _DEBUG_ "loading PTD [$ptd].";
+    $ptd = Lingua::PTD->new($ptd);
+
+    _DEBUG_ "writing file [$optd].";
+    $ptd->saveAs("stardict", $optd, $my_opts);
 }
 
 =head2 stats

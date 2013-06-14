@@ -18,8 +18,9 @@ use Lingua::PTD::BzDmp;
 use Lingua::PTD::XzDmp;
 use Lingua::PTD::SQLite;
 use Lingua::PTD::TSV;
+use Lingua::PTD::StarDict;
 
-our $VERSION = '1.09';
+our $VERSION = '1.10';
 
 =encoding UTF-8
 
@@ -674,7 +675,7 @@ true value in success.
 =cut
 
 sub saveAs {
-    my ($self, $type, $filename, $extra) = @_;
+    my ($self, $type, $filename, $opts) = @_;
 
     warn "Lingua::PTD saveAs called without all required parameteres" unless $type && $filename;
 
@@ -684,7 +685,8 @@ sub saveAs {
     Lingua::PTD::BzDmp::_save( $self => $filename) and $done = 1 if $type =~ /bz2/i;
     Lingua::PTD::XzDmp::_save( $self => $filename) and $done = 1 if $type =~ /xz/i;
     Lingua::PTD::SQLite::_save($self => $filename) and $done = 1 if $type =~ /sqlite/i;
-    Lingua::PTD::TSV::_save($self, $filename, $extra) and $done = 1 if $type =~ /tsv/i;
+    Lingua::PTD::TSV::_save($self, $filename, $opts) and $done = 1 if $type =~ /tsv/i;
+    Lingua::PTD::StarDict::_save($self, $filename, $opts) and $done = 1 if $type =~ /stardict/i;
     # XXX - add above in the documentation.
 
     # default

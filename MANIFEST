@@ -11,6 +11,7 @@ lib/Lingua/PTD/Dumper.pm
 lib/Lingua/PTD/SQLite.pm
 lib/Lingua/PTD/XzDmp.pm
 lib/Lingua/PTD/TSV.pm
+lib/Lingua/PTD/StarDict.pm
 t/02_ptd.t
 t/02_casedptd.dmp
 t/02_ptd.dmp

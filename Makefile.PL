@@ -34,6 +34,7 @@ WriteMakefile(
                   'Term::ReadLine::Gnu'  => '1.20',
                   'Unicode::CaseFold'    => '0',
                   'IO::Compress::Xz'     => '2.058',
+                  'Module::Load::Conditional' => '0',
                  },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Lingua-PTD-*' },

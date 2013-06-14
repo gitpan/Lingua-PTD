@@ -29,10 +29,11 @@ requires:
   IO::Uncompress::Bunzip2: 2.027
   IO::Uncompress::UnXz: 2.058
   List::MoreUtils: 0
+  Module::Load::Conditional: 0
   Pod::Usage: 0
   Term::ReadLine::Gnu: 1.20
   Time::HiRes: 1.2
   Unicode::CaseFold: 0
   parent: 0
   perl: 5.006
-version: 1.09
+version: 1.10
