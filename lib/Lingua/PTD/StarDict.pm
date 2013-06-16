@@ -4,9 +4,9 @@ use warnings;
 use strict;
 
 use parent 'Lingua::PTD';
-our $VERSION = '1.0';
+our $VERSION = '1.1';
 
-use Lingua::StarDict::Gen;
+use Module::Load::Conditional qw/check_install/;
 
 =encoding UTF-8
 
@@ -55,7 +55,13 @@ sub _save {
         }
         $d->{$w} = join '; ', @l if @l;
       });
-    Lingua::StarDict::Gen::writeDict($d, $name, $dir);
+
+    if ( check_install( module=>'Lingua::StarDict::Gen' ) ) {
+        require "Lingua::StarDict::Gen";
+        Lingua::StarDict::Gen::writeDict($d, $name, $dir);
+    } else {
+        die "Lingua::StarDict::Gen is required to output StarDict format."
+    }
 
     return 1;
 }

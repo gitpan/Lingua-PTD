@@ -20,7 +20,7 @@ use Lingua::PTD::SQLite;
 use Lingua::PTD::TSV;
 use Lingua::PTD::StarDict;
 
-our $VERSION = '1.10';
+our $VERSION = '1.11';
 
 =encoding UTF-8
 

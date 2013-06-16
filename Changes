@@ -1,5 +1,8 @@
 Revision history for Lingua-PTD
 
+1.11    Sun Jun 16 14:49:02 WEST 2013
+        - Check for StarDict::Gen in the correct place
+
 1.10    Fri Jun 14 11:42:00 WEST 2013
         - Add PTD export to StarDict.
 

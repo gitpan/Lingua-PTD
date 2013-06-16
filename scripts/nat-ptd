@@ -10,7 +10,6 @@ use File::Copy 'cp';
 use List::MoreUtils 'uniq';
 use Term::ReadLine;
 use Encode 'decode';
-use Module::Load::Conditional qw/check_install/;
 
 =head1 NAME
 
@@ -285,11 +284,6 @@ sub toStarDict {
     my ($my_opts, $ptd, $optd) = @_;
     $optd ||= $ptd;
     $optd = _get_output_filename('', $optd);
-
-    unless ( check_install( module=>'Lingua::StarDict::Gen' ) ) {
-      print "Lingua::StarDict::Gen module is required for this command.\n";
-      return;
-    }
 
     _DEBUG_ "loading PTD [$ptd].";
     $ptd = Lingua::PTD->new($ptd);
