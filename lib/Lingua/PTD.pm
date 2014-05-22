@@ -20,7 +20,7 @@ use Lingua::PTD::SQLite;
 use Lingua::PTD::TSV;
 use Lingua::PTD::StarDict;
 
-our $VERSION = '1.11';
+our $VERSION = '1.12';
 
 =encoding UTF-8
 
@@ -143,6 +143,7 @@ sub dump {
                       printf "  },\n";
                   },
                   sorted => 1,
+                  task => 'dump',
                  );
     print "}\n";
 }
@@ -309,7 +310,8 @@ sub stats {
                            }
                            $stats->{avgBestTrans} += $bestProb;
                        }
-                   });
+                   },
+                   task => 'stats');
     $stats->{avgTransNr}   /= $stats->{count};
     $stats->{avgBestTrans} /= $stats->{count};
     $stats->{avgOcc}        = $stats->{occTotal} / $stats->{count};
@@ -361,6 +363,7 @@ sub subtractDomain {
                          return exists($domain{$w}) ? undef : toentry($w,$c,%t)
                      },
                      filter => 1,
+                     task => 'subtractDomain',
                     );
     $self->_calculate_sizes();
     return $self;
@@ -408,6 +411,7 @@ sub restrictDomain {
                          return exists($domain{$w}) ? toentry($w,$c,%t):undef
                      },
                      filter => 1,
+                     task => 'restrictDomain',
                     );
     $self->_calculate_sizes();
     return $self;
@@ -443,7 +447,8 @@ sub reprob {
                       $t{$_} /= $actual for (keys %t);
                       return toentry($w, $c, %t);
                   },
-                  filter => 1
+                  filter => 1,
+                  task => 'reprob'
                  );
     return $self;
 }
@@ -483,7 +488,9 @@ sub intersect {
                return undef;
            }
        },
-       filter => 1);
+       filter => 1,
+       task => 'intersect',
+       );
     $self->_calculate_sizes();
 }
 
@@ -541,6 +548,7 @@ sub add {
                       }
                   },
                   filter => 1,
+                  task => 'add',
                   verbose => $ops{verbose},
                  );
     $other->_commit;
@@ -555,7 +563,8 @@ sub add {
                            $self->_set_word_translation($w, $t, $t{$t});
                        }
                    },
-                   verbose => $ops{verbose}
+                   task => 'add',
+                   verbose => $ops{verbose},
                   );
     $self->_commit;
     $self->_calculate_sizes();
@@ -596,6 +605,7 @@ sub downtr {
     my ($self, $sub, %opt) = @_;
 
     $opt{verbose} //= $self->verbose;
+    $opt{task} ||= $self->{' task '} || "downtr";
 
     my $time = [Time::HiRes::gettimeofday];
     my $counter = 0;
@@ -615,13 +625,13 @@ sub downtr {
         }
 
         $counter ++;
-        print STDERR "\r\tProcessing ($counter entries)..." if $opt{verbose} && !($counter%100);
+        print STDERR "\r[$opt{task}]\tProcessing ($counter entries)..." if $opt{verbose} && !($counter%100);
     }
     $self->_commit;
     $self->_calculate_sizes() if $opt{filter};
 
     my $elapsed = Time::HiRes::tv_interval($time);
-    printf STDERR "\r\tProcessed %d entries (%.2f seconds).\n", 
+    printf STDERR "\r[$opt{task}]\tProcessed %d entries (%.2f seconds).\n", 
              $counter, $elapsed if $opt{verbose};
 }
 
@@ -754,6 +764,7 @@ sub lowercase {
                       }
                   },
                   filter  => 1,
+                  task    => 'lowercase',
                   verbose => $ops{verbose},
                  );
 }
@@ -983,6 +994,13 @@ sub bws {
     my $pp = $my_opts{pp} || 0;
     my $output = $my_opts{output} || '';
 
+    my $filter = $my_opts{filter};
+
+    #my $sorter;
+    #if ($my_opts{sorter} && ref($my_opts{sorter}) eq 'CODE') {
+    #    $sorter = \&{$my_opts{sorter}};
+    #}
+
     # check files exist
     unless ($fileA and $fileB) {
        die "Error: need at least two PTDs given as argument.";
@@ -1026,6 +1044,8 @@ sub bws {
     my @final;
 
     my @words = $ptd->words;
+    my $total_words_l = $ptd->size();
+    my $total_words_r = $ptd_inv->size();
     foreach my $word (@words) {
         my $count = $ptd->count($word);
         next unless ($count >= $min_occur);
@@ -1038,7 +1058,10 @@ sub bws {
             next if ($_ eq "(none)"); 
 
             __pp_ucts({l=>[$word],r=>[$_],rank=>$p}, $rank) if $pp;
-            push @final, {l=>$word, r=>$_, rank=>$p} unless $pp;
+            push @final, {
+                l=>$word, cl=>$count, tl=>$total_words_l, 
+                r=>$_, cr=>$ptd_inv->count($_), tr=>$total_words_r,
+                rank=>$p } unless $pp;
         }
     }
     @words = $ptd_inv->words;
@@ -1054,7 +1077,19 @@ sub bws {
             next if ($_ eq "(none)"); 
 
             __pp_ucts({l=>[$_],r=>[$word],rank=>$p}, $rank) if $pp;
-            push @final, {l=>$_, r=>$word, rank=>$p} unless $pp;
+            push @final, {
+                l=>$_, cl=>$ptd->count($_), tl=>$total_words_l,
+                r=>$word, cr=>$count, tr=>$total_words_r,
+                rank=>$p } unless $pp;
+        }
+    }
+
+    # if only one filter, put it in an array
+    $filter = [$filter] if ($filter and ref($filter) eq 'CODE');
+    # apply array of filters in order
+    if ($filter and ref($filter) eq 'ARRAY'){
+        while (my $f = shift(@{$filter})) {
+            @final = grep { $f->($_) } @final ;
         }
     }
 
@@ -1083,7 +1118,7 @@ Alberto Manuel Brandão Simões, E<lt>ambs@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2008-2012 by Alberto Manuel Brandão Simões
+Copyright (C) 2008-2014 by Alberto Manuel Brandão Simões
 
 =cut
 

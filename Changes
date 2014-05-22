@@ -1,23 +1,27 @@
 Revision history for Lingua-PTD
 
+1.12    Thu May 22 18:00:00 WEST 2014
+        - Verbose mode now presents current task name.
+        - Copyrights updated to 2014.
+
 1.11    Sun Jun 16 14:49:02 WEST 2013
-        - Check for StarDict::Gen in the correct place
+        - Check for StarDict::Gen in the correct place.
 
 1.10    Fri Jun 14 11:42:00 WEST 2013
         - Add PTD export to StarDict.
 
 1.09    Tue Jun 11 11:48:54 WEST 2013
-        - Fix Manifest
+        - Fix Manifest.
 
 1.08    Mon Jun 10 17:57:12 WEST 2013
-        - Bug fix on STDOUT closing in the bws and ucts functions
+        - Bug fix on STDOUT closing in the bws and ucts functions.
         - Add PTD export to (OmegaT friendly) TSV format.
 
 1.07    Tue Apr 16 17:57:46 WEST 2013
         - Support utf8 on nat-ptd query.
 
 1.06    Mon Apr 15 22:38:10 WEST 2013
-        - Some Term::ReadLine::Gnu need an argument.. weird
+        - Some Term::ReadLine::Gnu need an argument.. weird.
 
 1.05    Thu Dec 13 12:04:54 WET 2012
         - Use case folding instead of lowercasing.

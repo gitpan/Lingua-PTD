@@ -32,7 +32,7 @@ Alberto Manuel Brandão Simões, E<lt>ambs@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2011-2012 by Alberto Manuel Brandão Simões
+Copyright (C) 2011-2014 by Alberto Manuel Brandão Simões
 
 =cut
 
