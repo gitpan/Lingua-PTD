@@ -1,5 +1,5 @@
 package Lingua::PTD;
-
+$Lingua::PTD::VERSION = '1.13';
 use 5.010;
 
 use parent 'Exporter';
@@ -19,8 +19,6 @@ use Lingua::PTD::XzDmp;
 use Lingua::PTD::SQLite;
 use Lingua::PTD::TSV;
 use Lingua::PTD::StarDict;
-
-our $VERSION = '1.12';
 
 =encoding UTF-8
 
@@ -739,10 +737,6 @@ sub lowercase {
 
                       if ($w =~ /[[:upper:]]/) {
                           my $lw = fc $w;
-
-                          open X, ">>:utf8", "log";
-                          print X "WAS $w, IS $lw\n";
-                          close X;
 
                           my %ot = $self->transHash($lw);
                           if (%ot) {

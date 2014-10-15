@@ -1,7 +1,6 @@
 package Lingua::PTD::Dumper;
-
+$Lingua::PTD::Dumper::VERSION = '1.13';
 use parent 'Lingua::PTD';
-our $VERSION = '1.0';
 
 =encoding UTF-8
 

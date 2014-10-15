@@ -1,10 +1,9 @@
 package Lingua::PTD::SQLite;
-
+$Lingua::PTD::SQLite::VERSION = '1.13';
 use strict;
 use warnings;
 
 use parent 'Lingua::PTD';
-our $VERSION = '1.0';
 use DBI;
 
 =encoding UTF-8

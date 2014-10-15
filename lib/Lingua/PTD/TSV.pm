@@ -1,10 +1,9 @@
 package Lingua::PTD::TSV;
-
+$Lingua::PTD::TSV::VERSION = '1.13';
 use warnings;
 use strict;
 
 use parent 'Lingua::PTD';
-our $VERSION = '1.0';
 
 =encoding UTF-8
 

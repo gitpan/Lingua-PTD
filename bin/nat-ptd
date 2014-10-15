@@ -46,6 +46,7 @@ our %command =
    stats     => [\&stats     => 'Shows basic PTD statistics.'],
    toDmp     => [\&toDmp     => 'Converts a PTD to Dumper format.'],
    toDmpBz   => [\&toDmpBz   => 'Converts a PTD to Bzipped Dumper format.'],
+   toDmpXz   => [\&toDmpXz   => 'Converts a PTD to XZipped Dumper format.'],
    toSQLite  => [\&toSQLite  => 'Converts a PTD to SQLite format.'],
    toTSV       => [\&toTSV     => 'Exports a PTD in a TSV (OmegaT glossary friendly) format.'],
    toStarDict  => [\&toStarDict     => 'Exports a PTD to StarDict format.'],
@@ -197,7 +198,6 @@ sub toDmp {
     $ptd->saveAs("dmp", $optd);
 }
 
-
 =head2 toDmpBz
 
 This option can be used to convert a PTD to a Bzipped Dumper
@@ -216,6 +216,26 @@ sub toDmpBz {
 
     _DEBUG_ "writing file [$optd].";
     $ptd->saveAs("bz2", $optd);
+}
+
+=head2 toDmpXz
+
+This option can be used to convert a PTD to a XZipped Dumper
+format. First argument is the PTD filename. Second, optional, argument
+can be specified as the output filename.
+
+=cut
+
+sub toDmpXz {
+    my ($my_opts, $ptd, $optd) = @_;
+    $optd ||= $ptd;
+    $optd = _get_output_filename("dmp.xz", $optd);
+
+    _DEBUG_ "loading PTD [$ptd].";
+    $ptd = Lingua::PTD->new($ptd);
+
+    _DEBUG_ "writing file [$optd].";
+    $ptd->saveAs("xz", $optd);
 }
 
 =head2 toTSV

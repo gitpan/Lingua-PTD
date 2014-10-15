@@ -1,10 +1,9 @@
 package Lingua::PTD::BzDmp;
-
+$Lingua::PTD::BzDmp::VERSION = '1.13';
 use parent 'Lingua::PTD';
-our $VERSION = '1.0';
 
-use IO::Compress::Bzip2     qw(bzip2 $Bzip2Error);
-use IO::Uncompress::Bunzip2 qw(bunzip2 $Bunzip2Error);
+use IO::Compress::Bzip2     2.066  qw(bzip2 $Bzip2Error);
+use IO::Uncompress::Bunzip2 2.066  qw(bunzip2 $Bunzip2Error);
 
 =encoding UTF-8
 
@@ -51,7 +50,8 @@ sub new {
 sub _save {
     my ($self, $filename) = @_;
 
-    my $z = new IO::Compress::Bzip2 $filename or return 0;
+    my $z = new IO::Compress::Bzip2 $filename, encode => 'utf8' or return 0;
+    binmode $z, ":utf8";
     select $z;
     $self->dump;
     $z->close;

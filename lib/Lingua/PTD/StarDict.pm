@@ -1,10 +1,9 @@
 package Lingua::PTD::StarDict;
-
+$Lingua::PTD::StarDict::VERSION = '1.13';
 use warnings;
 use strict;
 
 use parent 'Lingua::PTD';
-our $VERSION = '1.1';
 
 use Module::Load::Conditional qw/check_install/;
 

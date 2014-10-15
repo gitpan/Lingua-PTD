@@ -1,10 +1,9 @@
 package Lingua::PTD::XzDmp;
-
+$Lingua::PTD::XzDmp::VERSION = '1.13';
 use parent 'Lingua::PTD';
-our $VERSION = '1.0';
 
-use IO::Compress::Xz     qw(xz   $XzError);
-use IO::Uncompress::UnXz qw(unxz $UnXzError);
+use IO::Compress::Xz     2.066 qw(xz   $XzError);
+use IO::Uncompress::UnXz 2.066 qw(unxz $UnXzError);
 
 =encoding UTF-8
 
@@ -51,7 +50,7 @@ sub new {
 sub _save {
     my ($self, $filename) = @_;
 
-    my $z = new IO::Compress::Xz $filename or return 0;
+    my $z = new IO::Compress::Xz $filename, encode => 'utf8' or return 0;
     select $z;
     $self->dump;
     $z->close;
